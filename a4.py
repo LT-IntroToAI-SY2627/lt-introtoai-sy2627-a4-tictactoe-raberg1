@@ -10,8 +10,28 @@ class TTTBoard:
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
 
-    pass
+    def __init__(self):
+        """Initializes a new TTTBoard with an empty board"""
+        self.board = ["*"] * 9
 
+    def __str__(self) -> str:
+        """Returns a string representation of the board"""
+        return f"{self.board[0]} {self.board[1]} {self.board[2]}\n{self.board[3]} {self.board[4]} {self.board[5]}\n{self.board[6]} {self.board[7]} {self.board[8]}"
+
+    def make_move(self, player: str, position: int) -> bool:
+        """Makes a move for the given player at the given position
+
+        Args:
+            player - either 'X' or 'O'
+            position - an integer between 0 and 8 inclusive representing the position on the board
+
+        Returns:
+            True if the move was successful, False otherwise
+        """
+        if 0 <= position <= 8 and self.board[position] == "*":
+            self.board[position] = player
+            return True
+        return False
 
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
@@ -61,9 +81,13 @@ if __name__ == "__main__":
     # need to write some more tests to make sure that your TTTBoard class is behaving
     # properly.
     brd = TTTBoard()
+    print(brd)
     brd.make_move("X", 8)
     brd.make_move("O", 7)
-
+    brd.make_move("X", 7)
+    brd.make_move("X", 6)
+    print()
+    print(brd)
     assert brd.game_over() == False
 
     brd.make_move("X", 5)
