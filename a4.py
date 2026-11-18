@@ -33,6 +33,42 @@ class TTTBoard:
             return True
         return False
 
+    def has_won(self, player: str) -> bool:
+        """Returns True if the given player has won, False otherwise
+
+        Args:
+            player - either 'X' or 'O'  
+            
+        Returns:
+            True if the given player has won, False otherwise
+        """
+        winning_positions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ]
+        for positions in winning_positions:
+            if all(self.board[pos] == player for pos in positions):
+                return True
+        return False
+
+    def game_over(self) -> bool:
+        """Returns True if the game is over, False otherwise
+
+        Returns:
+            True if the game is over, False otherwise
+        """
+        return self.has_won("X") or self.has_won("O") or "*" not in self.board
+
+    def clear(self) -> None:
+        """Clears the board"""
+        self.board = ["*"] * 9
+
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
 
@@ -81,13 +117,13 @@ if __name__ == "__main__":
     # need to write some more tests to make sure that your TTTBoard class is behaving
     # properly.
     brd = TTTBoard()
-    print(brd)
+    # print(brd)
     brd.make_move("X", 8)
     brd.make_move("O", 7)
     brd.make_move("X", 7)
     brd.make_move("X", 6)
     print()
-    print(brd)
+    # print(brd)
     assert brd.game_over() == False
 
     brd.make_move("X", 5)
@@ -113,4 +149,4 @@ if __name__ == "__main__":
     print("All tests passed!")
 
     # uncomment to play!
-    # play_tic_tac_toe()
+    play_tic_tac_toe()
