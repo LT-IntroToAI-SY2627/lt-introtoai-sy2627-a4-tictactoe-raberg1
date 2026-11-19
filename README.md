@@ -42,4 +42,15 @@ To help you to ensure that your code is working properly, we have provided 2 add
 
 When you're done, push your `a4.py` to github.
 
+## Graphical game
 
+To play in a graphical window, run:
+
+```bash
+python tictactoe_gui.py
+```
+
+Choose **Two Players** for local play or **Play Computer** to play as X against
+the computer as O. In computer mode, the computer takes immediate wins but
+does not always block, so it can be beaten. Select **New Game** to reset the
+board.
